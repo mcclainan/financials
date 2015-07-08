@@ -1,0 +1,26 @@
+.date-picker{
+    display: inline;
+    width: 32.5%;
+}
+
+.dashboard-heading{
+    font-weight: bold;
+    font-size: 2em;
+}
+.calendar-expense{
+    color: red;
+    background-color: transparent;
+}
+
+.calendar-income{
+    color: green;
+    background-color: transparent;
+}
+
+.calendar-total{
+    background-color: dodgerblue;
+    color: white;
+}
+
+
+

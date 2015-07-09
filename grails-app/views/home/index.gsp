@@ -34,28 +34,31 @@
                         Most Recent Trasactions
                     </header>
                     <div class="panel-body">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <td><g:message code="transaction.date.label"/></td>
-                                <td><g:message code="transaction.location.label"/></td>
-                                <td><g:message code="transaction.amount.label"/></td>
-                                <th><g:message code="category"/></th>
-                                <th><g:message code="account"/></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <g:each in="${mostRecentTransactions}" var="transaction">
+                        <div class="table-responsive">
+
+                            <table class="table table-hover">
+                                <thead>
                                 <tr>
-                                    <td><g:formatDate date="${transaction.date}" format="MMM dd"/></td>
-                                    <td>${transaction.location}</td>
-                                    <td><g:formatNumber number="${transaction.amount}" type="currency" currencyCode="USD"/></td>
-                                    <td>${transaction.category}</td>
-                                    <td>${transaction.account}</td>
+                                    <td><g:message code="transaction.date.label"/></td>
+                                    <td><g:message code="transaction.location.label"/></td>
+                                    <td><g:message code="transaction.amount.label"/></td>
+                                    <th><g:message code="category"/></th>
+                                    <th><g:message code="account"/></th>
                                 </tr>
-                            </g:each>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                <g:each in="${mostRecentTransactions}" var="transaction">
+                                    <tr>
+                                        <td><g:formatDate date="${transaction.date}" format="MMM dd"/></td>
+                                        <td>${transaction.location}</td>
+                                        <td><g:formatNumber number="${transaction.amount}" type="currency" currencyCode="USD"/></td>
+                                        <td>${transaction.category}</td>
+                                        <td>${transaction.account}</td>
+                                    </tr>
+                                </g:each>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </section>
             </div>

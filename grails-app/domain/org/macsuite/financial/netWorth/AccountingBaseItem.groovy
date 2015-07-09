@@ -14,7 +14,7 @@ class AccountingBaseItem implements Serializable{
     Category   sale
     Category   payment
     Category   proceeds
-    Boolean    active
+    Boolean    active = true
 
     static hasMany = [valueChangedEvents:ValueChangeEvent]
 

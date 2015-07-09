@@ -67,7 +67,7 @@ class TransactionCommand {
         transaction.category=category
         transaction.account=account
         transaction.comboGroup=comboGroup
-        transaction.temporary=temporary
+        transaction.temporary=temporary?:false
         return transaction
     }
 }

@@ -33,7 +33,7 @@
             <div class="col-lg-3">
                 <section class="panel">
                     <header class="panel-heading">
-                        Edit Main Category
+                        Edit Account
                     </header>
                     <div class="panel-body">
                         <g:form action="update">
@@ -53,6 +53,10 @@
                                 <g:select name="importFormat" from="${ImportFormat.findAllByActive(true)}"
                                           value="${command?.importFormat.id}" class="form-control"
                                           optionKey="id" optionValue="name" noSelection="['null':'Choose']"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="title"><g:message code="account.balance.label"/> </label>
+                                <g:field type="number" step="any" name="balance" class="form-control" placeholder="Enter balance" value="${command?.balance}"/>
                             </div>
                             <div class="col-lg-10">
                                 <div class="checkbox">

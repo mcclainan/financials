@@ -44,6 +44,9 @@
                             <p><span><strong><g:message code="importFormat.dateColumn.label"/></strong></span>: ${importFormatInstance.dateColumn} </p>
                         </div>
                         <div class="row-fluid">
+                            <p><span><strong><g:message code="importFormat.dateFormat.label"/></strong></span>: ${importFormatInstance.dateFormat} </p>
+                        </div>
+                        <div class="row-fluid">
                             <p><span><strong><g:message code="importFormat.descriptionColumn.label"/></strong></span>: ${importFormatInstance.descriptionColumn} </p>
                         </div>
                         <g:if test="${importFormatInstance.amountColumn}">

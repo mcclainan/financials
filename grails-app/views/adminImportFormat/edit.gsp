@@ -42,6 +42,10 @@
                                     <g:textField name="name" class="form-control" placeholder="Enter Name" value="${command?.name}"/>
                                 </div>
                                 <div class="form-group">
+                                    <label for="name"><g:message code="importFormat.dateFormat.label"/> </label>
+                                    <g:textField name="dateFormat" class="form-control" placeholder="Enter Date Format" value="${command?.dateFormat}"/>
+                                </div>
+                                <div class="form-group">
                                     <label for="dateColumn"><g:message code="importFormat.dateColumn.label"/> </label>
                                     <g:field type="number" step="1" name="dateColumn" class="form-control"  value="${command?.dateColumn}"/>
                                     <p><g:message code="importFormat.dateColumn.tip"/></p>

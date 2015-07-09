@@ -16,14 +16,14 @@
     <label class="col-sm-2 control-label"><g:message code="transaction.location.label"/><span class="required">*</span> </label>
     <div class="col-sm-10">
         <g:textField name="location" class="form-control" value="${command?.location}"/>
-        <span class="help-block">Where was this purchse made?</span>
+        <span class="help-block">Where did ths purchase or receipt happen?</span>
     </div>
 </div>
 <div class="form-group ${fieldError([bean: command, field:'description'],'has-error')}">
     <label class="col-sm-2 control-label"><g:message code="transaction.description.label"/></label>
     <div class="col-sm-10">
         <g:textArea name="description" class="form-control" value="${command?.description}" cols="2"/>
-        <span class="help-block">What was purchased?</span>
+        <span class="help-block">What was purchased or recieved?</span>
     </div>
 </div>
 <div class="form-group ${fieldError([bean: command, field:'amount'],'has-error')}">

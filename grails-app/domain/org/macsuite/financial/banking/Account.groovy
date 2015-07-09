@@ -6,7 +6,7 @@ import org.macsuite.financial.tracking.Transaction
 class Account implements Serializable{
 
     String title
-    BigDecimal balance
+    BigDecimal balance = new BigDecimal('0')
     Boolean liquid = true
     Boolean active = true
 

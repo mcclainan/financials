@@ -10,6 +10,7 @@ import org.macsuite.financial.banking.ImportFormat
 class ImportFormatCommand {
     Long    id
     String  name
+    String  dateFormat
     Integer dateColumn
     Integer descriptionColumn
     Integer amountColumn
@@ -23,6 +24,7 @@ class ImportFormatCommand {
         id nullable:true,blank:true
         name nullable:false,blank:false
         dateColumn nullable:false,blank:false
+        dateFormat nullable:false,blank:false
         descriptionColumn nullable:false,blank:false
         amountColumn nullable:true,blank:true, validator:{v,o->if(!v && !o.hasMultipleAmountColumns){return 'nullable'}}
         debitColumn nullable:true,blank:true, validator:{v,o->if(!v && o.hasMultipleAmountColumns && !o.amountColumn){return 'nullable'}}
@@ -36,6 +38,7 @@ class ImportFormatCommand {
         id=importFormat.id
         name=importFormat.name
         dateColumn=importFormat.dateColumn
+        dateFormat=importFormat.dateFormat
         descriptionColumn=importFormat.descriptionColumn
         amountColumn=importFormat.amountColumn
         debitColumn=importFormat.debitColumn
@@ -48,6 +51,7 @@ class ImportFormatCommand {
     ImportFormat bind(ImportFormat importFormat){
         importFormat.name=name
         importFormat.dateColumn=dateColumn
+        importFormat.dateFormat=dateFormat
         importFormat.descriptionColumn=descriptionColumn
         importFormat.amountColumn=amountColumn
         importFormat.debitColumn=debitColumn

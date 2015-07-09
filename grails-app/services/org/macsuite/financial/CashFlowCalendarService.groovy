@@ -41,8 +41,10 @@ class CashFlowCalendarService {
         List<CashFlowCalendarBean> cashFlowCalendarBeanList = []
         Calendar calendar = new GregorianCalendar(startDate.getAt(Calendar.YEAR),startDate.getAt(Calendar.MONTH),startDate.getAt(Calendar.DAY_OF_MONTH))
         BigDecimal total = Account.cashTotal.get()
-        for(int i=1;i<calendar.get(Calendar.DAY_OF_WEEK);i++){
-            cashFlowCalendarBeanList<<new CashFlowCalendarBean()
+        if(income.size()>0 || expense.size()>0){
+            for(int i=1;i<calendar.get(Calendar.DAY_OF_WEEK);i++){
+                cashFlowCalendarBeanList<<new CashFlowCalendarBean()
+            }
         }
         int breaker = 0
         while(income.size()>0 || expense.size()>0){

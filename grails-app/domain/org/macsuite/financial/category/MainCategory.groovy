@@ -13,7 +13,7 @@ class MainCategory{
     }
 
     static mapping = {
-        sort('name')
+        sort(active:'desc', name:'asc')
     }
 
     public String toString(){

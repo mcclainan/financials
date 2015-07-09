@@ -23,8 +23,8 @@ environments {
             url = "jdbc:mysql://localhost:3306/financial_dev"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-            username = ""
-            password = ""
+            username = "root"
+            password = "applicationdatabase"
         }
         dataSource_auth {
             pooled = true
@@ -32,8 +32,8 @@ environments {
             url = "jdbc:mysql://localhost:3306/usermanagement_dev"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-            username = ""
-            password = ""
+            username = "root"
+            password = "applicationdatabase"
         }
     }
     test {
@@ -46,11 +46,11 @@ environments {
         dataSource {
             pooled = true
             dbCreate = "validate"
-            url = ""
+            url = "jdbc:mysql://appdb.chggzbpqqzdo.us-west-2.rds.amazonaws.com:3306/financial"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-            username = ""
-            password = ""
+            username = "tony"
+            password = "Application>database"
             properties {
                 // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                 jmxEnabled = true
@@ -75,11 +75,11 @@ environments {
         dataSource_auth {
             pooled = true
             dbCreate = "validate"
-            url = ""
+            url = "jdbc:mysql://appdb.chggzbpqqzdo.us-west-2.rds.amazonaws.com:3306/usermanagement"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-            username = ""
-            password = ""
+            username = "tony"
+            password = "Application>database"
             properties {
                 // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                 jmxEnabled = true

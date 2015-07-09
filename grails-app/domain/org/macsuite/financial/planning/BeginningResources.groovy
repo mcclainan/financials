@@ -22,4 +22,8 @@ class BeginningResources implements Serializable{
         total = total.add(other)
         return  total
     }
+
+    static mapping = {
+        sort(beginDate: 'desc')
+    }
 }

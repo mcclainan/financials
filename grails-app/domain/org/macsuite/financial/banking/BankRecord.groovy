@@ -21,4 +21,8 @@ class BankRecord implements Serializable{
         account nullable:false, blank:false
         batch nullable:false, blank:false
     }
+
+    static mapping = {
+        sort([batch: 'desc', date: 'desc'])
+    }
 }

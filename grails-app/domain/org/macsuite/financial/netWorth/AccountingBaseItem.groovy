@@ -14,6 +14,7 @@ class AccountingBaseItem implements Serializable{
     Category   sale
     Category   payment
     Category   proceeds
+    Boolean    active
 
     static hasMany = [valueChangedEvents:ValueChangeEvent]
 
@@ -28,6 +29,11 @@ class AccountingBaseItem implements Serializable{
         sale nullable:true, blank:true
         payment nullable:true, blank:true
         proceeds nullable:true, blank:true
+        active nullable:true, blank:true
+    }
+
+    static mapping = {
+        sort(active:'desc', name:'asc')
     }
 
     String toString(){

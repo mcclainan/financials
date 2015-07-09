@@ -3,6 +3,7 @@ package org.macsuite.financial
 import grails.transaction.Transactional
 import org.macsuite.financial.banking.Account
 import org.macsuite.financial.beans.CashFlowCalendarBean
+import org.macsuite.financial.planning.PlannedTransaction
 
 @Transactional
 class CashFlowCalendarService {
@@ -24,23 +25,36 @@ class CashFlowCalendarService {
         query.append("where p.date >= :date ")
         query.append("and p.category = c.id ")
         query.append("and c.type = 'I' ")
+        query.append("and c.cash = :cash ")
         query.append("and p.date between :startDate and :endDate ")
         query.append("group by p.date ")
         query.append("order by p.date")
-        def income = Account.executeQuery(query.toString(),[date:date-1,startDate: startDate-decrimenter, endDate: endCalendar.getTime()])
+        def income = Account.executeQuery(query.toString(),[date:date-1,startDate: startDate-decrimenter, endDate: endCalendar.getTime(),cash:true])
         query = new StringBuffer()
         query.append("select p.date, sum(p.amount) ")
         query.append("from PlannedTransaction p, Category c ")
         query.append("where p.date >= :date ")
         query.append("and p.category = c.id ")
         query.append("and c.type = 'E' ")
+        query.append("and c.cash = :cash ")
         query.append("and p.date between :startDate and :endDate ")
         query.append("group by p.date ")
         query.append("order by p.date")
-        def expense =  Account.executeQuery(query.toString(),[date:date-1,startDate: startDate-decrimenter,endDate: endCalendar.getTime()])
+        def expense =  Account.executeQuery(query.toString(),[date:date-1,startDate: startDate-decrimenter,endDate: endCalendar.getTime(),cash:true])
         List<CashFlowCalendarBean> cashFlowCalendarBeanList = []
         Calendar calendar = new GregorianCalendar(startDate.getAt(Calendar.YEAR),startDate.getAt(Calendar.MONTH),startDate.getAt(Calendar.DAY_OF_MONTH))
         BigDecimal total = Account.cashTotal.get()
+        println "Amount = ${total}"
+        if(startDate!=date){
+            BigDecimal amount = new BigDecimal(PlannedTransaction.transactionTotal('I',true,date-1,startDate-1).get().toString())
+            total = total.add(amount)
+            println "Amount= ${amount}"
+            println "Total = ${total}"
+            amount = new BigDecimal(PlannedTransaction.transactionTotal('E',true,date-1,startDate-1).get().toString())
+            total = total.minus(amount)
+            println "Amount= ${amount}"
+            println "Total = ${total}"
+        }
         if(income.size()>0 || expense.size()>0){
             for(int i=1;i<calendar.get(Calendar.DAY_OF_WEEK);i++){
                 cashFlowCalendarBeanList<<new CashFlowCalendarBean()

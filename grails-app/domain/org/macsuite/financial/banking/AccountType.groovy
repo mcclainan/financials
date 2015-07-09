@@ -11,4 +11,8 @@ class AccountType implements Serializable{
     public String toString(){
         type
     }
+
+    static mapping = {
+        sort([active: 'desc', type: 'asc'])
+    }
 }

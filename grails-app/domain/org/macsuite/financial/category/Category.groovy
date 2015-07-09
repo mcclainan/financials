@@ -30,4 +30,7 @@ class Category{
     public String toString(){
         name
     }
+     static mapping = {
+         sort(active: 'desc', name:'asc')
+     }
 }

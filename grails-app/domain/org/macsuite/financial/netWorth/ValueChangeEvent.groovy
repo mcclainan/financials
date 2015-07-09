@@ -13,5 +13,7 @@ class ValueChangeEvent implements Serializable{
         amount blank:false
         type blank: false, inList: TYPE_LIST
     }
-
+    static mapping = {
+        sort(date:'desc')
+    }
 }

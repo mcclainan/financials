@@ -33,16 +33,17 @@ class PlannedTransaction implements Serializable{
         return executeQuery(query.toString(),[type:type,startDate:startDate,endDate:endDate])
     }
 
-    static calendar(){
-        return calendar(null)
-    }
 
     static namedQueries = {
-        listByCategoryAndDate{catId,start,end->
+        transactionTotal{type,cash,startDate,endDate->
             category{
-                eq('id',catId)
+                eq('type',type)
+                eq('cash',true)
             }
-            between('date',start,end)
+            between('date',startDate,endDate)
+            projections{
+                sum('amount')
+            }
         }
     }
 

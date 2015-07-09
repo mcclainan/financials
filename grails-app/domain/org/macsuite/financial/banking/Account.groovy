@@ -24,6 +24,10 @@ class Account implements Serializable{
         accountingBaseItem nullable: true
     }
 
+    static mapping = {
+        sort([active: 'desc', title: 'asc'])
+    }
+
     BigDecimal getBalance(){
         accountingBaseItem?.balance?:balance
     }

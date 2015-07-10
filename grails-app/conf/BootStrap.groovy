@@ -20,28 +20,28 @@ class BootStrap {
     User user
 
     def init = { servletContext ->
-//        switch (Environment.current){
-//            case Environment.DEVELOPMENT:
-//                createDevData()
-//                break
-//            case Environment.TEST:
-//                createDevData()
-//                break
-//            case Environment.PRODUCTION:
-////                createAdmin()
+        switch (Environment.current){
+            case Environment.DEVELOPMENT:
+                createDevData()
+                break
+            case Environment.TEST:
+                createDevData()
+                break
+            case Environment.PRODUCTION:
+//                createAdmin()
 //                createRequiredEntries()
-//                break
-//            default:
-//                createRequiredEntries()
-//        }
+                break
+            default:
+                createRequiredEntries()
+        }
 //        createRoles()
 //        createAdmin()
     }
 
     def createDevData(){
+//        createRoles()
+//        createAdmin()
         createRequiredEntries()
-        createRoles()
-        createAdmin()
         createMainCategory()
         createBanking()
         createTransactions()
@@ -145,8 +145,6 @@ class BootStrap {
         AccountType type=new AccountType(type: 'Bank',resourceType:'cash').save(failOnError: true)
         new Account(title: 'Spending', balance: new BigDecimal('50.00'),type:type,importFormat:importFormat).save(failOnError: true)
         new Account(title: 'Deposit', balance: new BigDecimal('1000.00'),type:type,importFormat:importFormat).save(failOnError: true)
-        def account = new Account(title: 'Cash', balance: new BigDecimal('20.00'),type:type,importFormat:importFormat).save(failOnError: true)
-        new SpecialAccountLabel(label:'cash',account:account).save(failOnError: true)
 //        type=new AccountType(type:'IRA',resourceType: 'investment').save(failOnError: true)
 //        new Account(title: 'Kic IRA', balance: new BigDecimal('4500.00'),type:type,importFormat:importFormat).save(failOnError: true)
     }

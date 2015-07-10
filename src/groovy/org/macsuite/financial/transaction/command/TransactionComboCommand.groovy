@@ -15,5 +15,6 @@ class   TransactionComboCommand {
 
     static constraints = {
         description nullable: true
+        cashBack nullable: true
     }
 }

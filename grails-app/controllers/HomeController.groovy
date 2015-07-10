@@ -3,16 +3,20 @@
 import grails.plugin.springsecurity.annotation.Secured
 import org.macsuite.financial.CashFlowCalendarService
 import org.macsuite.financial.beans.CashFlowCalendarBean
+import org.macsuite.financial.reporting.StaticBudgetService
 import org.macsuite.financial.tracking.Transaction
 
-@Secured(['IS_AUTHENTICATED_ANONYMOUSLY'])
+@Secured(['IS_AUTHENTICATED_FULLY'])
 class HomeController {
     CashFlowCalendarService cashFlowCalendarService
+    StaticBudgetService staticBudgetService
     def index() {
         def calendar = cashFlowCalendarService.calendar(null)
         Date date = calendar.date
         def beanList = calendar.beanList
-        [mostRecentTransactions:Transaction.findAllByAutoDisplay(true,[max:10]),beanList:beanList,calendarDate:date]
+        [mostRecentTransactions:Transaction.findAllByAutoDisplay(true,[max:10]),
+         beanList:beanList,calendarDate:date,
+         budgetCompareList:staticBudgetService.createCompareObjects(date.getAt(Calendar.YEAR),date.getAt(Calendar.MONTH))]
     }
 
     def displayCalendar(){

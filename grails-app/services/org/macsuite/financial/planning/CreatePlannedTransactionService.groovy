@@ -107,12 +107,10 @@ class CreatePlannedTransactionService {
     }
 
     private BigDecimal getAmount(BigDecimal amount, String amountMode, Integer divider){
-        println amount
-
-        amount.setScale(2,BigDecimal.ROUND_HALF_UP)
-        BigDecimal dividerBD = new BigDecimal(divider.toString())
-        dividerBD.setScale(2,BigDecimal.ROUND_HALF_UP)
         if(amountMode == CreatePlannedTransactionCommand.SPREAD){
+            BigDecimal dividerBD = new BigDecimal(divider.toString())
+            dividerBD.setScale(2,BigDecimal.ROUND_HALF_UP)
+            amount.setScale(2,BigDecimal.ROUND_HALF_UP)
             amount = amount.divide(dividerBD,2,BigDecimal.ROUND_HALF_UP)
         }
         return amount

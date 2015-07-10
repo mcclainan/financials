@@ -35,6 +35,12 @@ class PlannedTransaction implements Serializable{
 
 
     static namedQueries = {
+        listByCategoryAndDate{catId,start,end->
+            category{
+                eq('id',catId)
+            }
+            between('date',start,end)
+        }
         transactionTotal{type,cash,startDate,endDate->
             category{
                 eq('type',type)

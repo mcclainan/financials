@@ -17,6 +17,7 @@ class CategoryCommand {
     Boolean active = true
     Boolean displayOnMobile = true
     Boolean cumulative=false
+    Boolean required=false
     MainCategory mainCategory
 
     static constraints = {
@@ -38,6 +39,7 @@ class CategoryCommand {
         displayOnMobile=category.displayOnMobile
         cumulative=category.cumulative
         mainCategory=category.mainCategory
+        required=category.required
     }
 
     Category bind(Category category){
@@ -50,6 +52,7 @@ class CategoryCommand {
         category.displayOnMobile=displayOnMobile
         category.cumulative=cumulative
         category.mainCategory=mainCategory
+        category.required=required
         return category
     }
 }

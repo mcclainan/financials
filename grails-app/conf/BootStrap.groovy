@@ -31,16 +31,16 @@ class BootStrap {
 //                createAdmin()
 //                createRequiredEntries()
                 break
-            default:
-                createRequiredEntries()
+//            default:
+//                createRequiredEntries()
         }
 //        createRoles()
 //        createAdmin()
     }
 
     def createDevData(){
-//        createRoles()
-//        createAdmin()
+        createRoles()
+        createAdmin()
         createRequiredEntries()
         createMainCategory()
         createBanking()
@@ -88,9 +88,9 @@ class BootStrap {
     def createMainCategory(){
         log.debug("Creating Main Categories")
         def mainCategory = new MainCategory(name: 'Food').save(failOnError: true)
-        new Category(mainCategory:mainCategory, name:'Groceries',cash: true,type: 'E').save(failOnError: true)
-        new Category(mainCategory:mainCategory, name:'Fast Food',cash: true,type: 'E').save(failOnError: true)
-        new Category(mainCategory:mainCategory, name:'Dinning Out',cash: true,type: 'E').save(failOnError: true)
+        new Category(mainCategory:mainCategory, name:'Groceries',cash: true,type: 'E', cumulative: true).save(failOnError: true)
+        new Category(mainCategory:mainCategory, name:'Fast Food',cash: true,type: 'E', cumulative: true).save(failOnError: true)
+        new Category(mainCategory:mainCategory, name:'Dinning Out',cash: true,type: 'E', cumulative: true).save(failOnError: true)
         mainCategory = new MainCategory(name: 'Clothing').save(failOnError: true)
         new Category(mainCategory:mainCategory, name:'New Clothing',cash: true,type: 'E').save(failOnError: true)
         new Category(mainCategory:mainCategory, name:'Used Clothing',cash: true,type: 'E').save(failOnError: true)
@@ -103,7 +103,7 @@ class BootStrap {
         mainCategory = new MainCategory(name: 'Fees').save(failOnError: true)
         new Category(mainCategory:mainCategory, name:'NSF',cash: true,type: 'E').save(failOnError: true)
         mainCategory = new MainCategory(name: 'Transportation').save(failOnError: true)
-        new Category(mainCategory:mainCategory, name:'Fuel',cash: true,type: 'E').save(failOnError: true)
+        new Category(mainCategory:mainCategory, name:'Fuel',cash: true,type: 'E', cumulative: true).save(failOnError: true)
         new Category(mainCategory:mainCategory, name:'Maintenance',cash: true,type: 'E').save(failOnError: true)
         mainCategory = new MainCategory(name: 'Communications').save(failOnError: true)
         new Category(mainCategory:mainCategory, name:'Cable',cash: true,type: 'E',required: true).save(failOnError: true)

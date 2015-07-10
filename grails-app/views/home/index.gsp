@@ -66,75 +66,35 @@
             <div class="col-lg-6">
                 <div class="panel">
                     <div class="panel-heading dashboard-heading">
-                        Cumulative Expense Tracking | Static Data | Not Implemented
+                        Cumulative Expense Tracking
                     </div>
                     <div class="panel-body">
                         <table class="table bootstrap-datatable countries">
                             <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Spent</th>
-                                <th>Budgeted</th>
-                                <th>Performance</th>
-                            </tr>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Spent</th>
+                                    <th>Budgeted</th>
+                                    <th>Performance</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Groceries</td>
-                                <td>1022</td>
-                                <td>1400</td>
-                                <td>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">73%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Fast Food</td>
-                                <td>142.50</td>
-                                <td>250</td>
-                                <td>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">57%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dining Out Food</td>
-                                <td>372</td>
-                                <td>400</td>
-                                <td>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="width: 93%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100" style="width: 7%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">93%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Fuel</td>
-                                <td>75.60</td>
-                                <td>375</td>
-                                <td>
-                                    <div class="progress thin">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                        </div>
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                        </div>
-                                    </div>
-                                    <span class="sr-only">20%</span>
-                                </td>
-                            </tr>
+                                <g:each in="${budgetCompareList}" var="compare">
+                                    <tr>
+                                        <td>${compare.category}</td>
+                                        <td><g:formatNumber number="${compare.spent}" type="currency" currencyCode="USD"/></td>
+                                        <td><g:formatNumber number="${compare.budgeted}" type="currency" currencyCode="USD"/></td>
+                                        <td>
+                                            <div class="progress thin">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${compare.used}" aria-valuemin="0" aria-valuemax="100" style="width: ${compare.used}%">
+                                                </div>
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${compare.left}" aria-valuemin="0" aria-valuemax="100" style="width: ${compare.left}%">
+                                                </div>
+                                            </div>
+                                            <span class="sr-only">${compare.used}%</span>
+                                        </td>
+                                    </tr>
+                                </g:each>
                             </tbody>
                         </table>
                     </div>

@@ -114,6 +114,13 @@
 
                                                 <div class="checkbox">
                                                     <label>
+                                                        <g:checkBox name="required" checked="${command?.required}"/>
+                                                        Transactions with this category will be handled as a required payment or income.
+                                                    </label>
+                                                </div>
+
+                                                <div class="checkbox">
+                                                    <label>
                                                         <g:checkBox name="cumulative" checked="${command?.cumulative}"/>
                                                         This category that is constantly used throughout the month and needs monitoring. Such as groceries and fuel.
                                                     </label>

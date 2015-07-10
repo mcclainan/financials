@@ -48,7 +48,7 @@
                                     <tr>
                                         <td><g:formatDate date="${transaction.date}" format="MM/dd"/></td>
                                         <td>${transaction.location}</td>
-                                        <td>${transaction.account}</td>
+                                        <td>${transaction.category}</td>
                                         <td>${transaction.amount}</td>
                                         <td>${transaction.account}</td>
                                     </tr>

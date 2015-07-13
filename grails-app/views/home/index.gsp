@@ -26,7 +26,10 @@
                 </ol>
             </div>
         </div>
-        <g:render template="templates/calendar"/>
+        <div class="row">
+            <g:render template="templates/calendar"/>
+            <g:render template="templates/missedList"/>
+        </div>
         <div class="row">
             <div class="col-lg-6">
                 <section class="panel">

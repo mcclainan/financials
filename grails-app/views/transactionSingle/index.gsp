@@ -70,7 +70,7 @@
                                     <tr>
                                         <td><g:formatDate date="${transaction.date}" format="MM/dd"/></td>
                                         <td>${transaction.location}</td>
-                                        <td>${transaction.amount}</td>
+                                        <td><g:formatNumber number="${transaction.amount}" type="currency" currencyCode="USD"/> </td>
                                         <td>${transaction.category}</td>
                                         <td>${transaction.account}</td>
 

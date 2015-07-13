@@ -1,4 +1,4 @@
-package admin
+package org.macsuite.financial.admin
 
 import grails.plugin.springsecurity.annotation.Secured
 import org.macsuite.financial.category.Category

@@ -178,7 +178,7 @@
                                       <span class="time">1 min</span>
                                   </span>
                                   <span class="message">
-                                      I really like this admin panel.
+                                      I really like this org.macsuite.financial.admin panel.
                                   </span>
                               </a>
                           </li>

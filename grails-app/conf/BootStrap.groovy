@@ -1,4 +1,5 @@
 import grails.util.Environment
+import org.macsuite.financial.banking.BankRecord
 import org.macsuite.financial.user.UserRole
 import org.macsuite.financial.banking.Account
 import org.macsuite.financial.banking.AccountType
@@ -140,7 +141,7 @@ class BootStrap {
     }
 
     def createBanking(){
-        ImportFormat importFormat = new ImportFormat(name:'USAA',dateColumn:1,descriptionColumn:2,amountColumn:3)
+        ImportFormat importFormat = new ImportFormat(name:'USAA',dateColumn:2,descriptionColumn:4,amountColumn:6)
         importFormat.save(flush: true)
         AccountType type=new AccountType(type: 'Bank',resourceType:'cash').save(failOnError: true)
         new Account(title: 'Spending', balance: new BigDecimal('50.00'),type:type,importFormat:importFormat).save(failOnError: true)
@@ -160,53 +161,64 @@ class BootStrap {
                 location: 'Walmart',
                 date: new Date(),
                 amount: new BigDecimal('20')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('20'),account:account,description:'blah blah',date: new Date(),batch: '1111111').save(failOnError: true,flush: true)
+
         new Transaction(category:category ,
                 account: account,
                 location: 'Walmart',
                 date: new Date()-30,
                 amount: new BigDecimal('25.90')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('25.90'),account:account,description:'blah blah',date: new Date()-30,batch: '1111111').save(failOnError: true,flush: true)
+
         new Transaction(category:category ,
                 account: account,
                 location: 'Walmart',
                 date: new Date()-7,
                 amount: new BigDecimal('147.00')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('147'),account:account,description:'blah blah',date: new Date()-8,batch: '1111111').save(failOnError: true,flush: true)
         new Transaction(category:category ,
                 account: account,
                 location: 'Dillons',
                 date: new Date()-3,
                 amount: new BigDecimal('6.80')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('6.85'),account:account,description:'blah blah',date: new Date()-2,batch: '1111111').save(failOnError: true,flush: true)
         new Transaction(category:category ,
                 account: account,
                 location: 'Walmart',
                 date: new Date()-1,
                 amount: new BigDecimal('45.23')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('45.23'),account:account,description:'blah blah',date: new Date()-1,batch: '1111111').save(failOnError: true,flush: true)
         new Transaction(category:category ,
                 account: account,
                 location: 'Walmart',
                 date: new Date()-5,
                 amount: new BigDecimal('3.11')).save(flush: true,failOnError: true)
-
+        new BankRecord(amount:new BigDecimal('3.11'),account:account,description:'blah blah',date: new Date()-5,batch: '1111111').save(failOnError: true,flush: true)
         category = Category.findByName('Fuel')
         new Transaction(category:category ,
                 account: account,
                 location: 'Sams',
                 date: new Date()-7,
                 amount: new BigDecimal('34.19')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('34.19'),account:account,description:'blah blah',date: new Date()-7,batch: '1111111').save(failOnError: true,flush: true)
         new Transaction(category:category ,
                 account: account,
                 location: 'Sams',
                 date: new Date()-14,
                 amount: new BigDecimal('24.61')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('24.61'),account:account,description:'blah blah',date: new Date()-14,batch: '1111111').save(failOnError: true,flush: true)
         new Transaction(category:category ,
                 account: account,
                 location: 'Sams',
                 date: new Date()-21,
                 amount: new BigDecimal('20.62')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('20.62'),account:account,description:'blah blah',date: new Date()-21,batch: '1111111').save(failOnError: true,flush: true)
         new Transaction(category:category ,
                 account: account,
                 location: 'Sams',
                 date: new Date()-28,
                 amount: new BigDecimal('27.65')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('27.65'),account:account,description:'blah blah',date: new Date()-28,batch: '1111111').save(failOnError: true,flush: true)
 
 
         category = Category.findByName('Business Income')
@@ -215,6 +227,7 @@ class BootStrap {
                 location: 'Client',
                 date: new Date()-15,
                 amount: new BigDecimal('20')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('20'),account:account,description:'blah blah',date: new Date()-5,batch: '1111111').save(failOnError: true,flush: true)
 
         account = Account.findByTitle('Deposit')
         category = Category.findByName('Nic Pay')
@@ -223,6 +236,7 @@ class BootStrap {
                 location: 'Paycheck',
                 date: new Date()-14,
                 amount: new BigDecimal('1000')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('1000'),account:account,description:'blah blah',date: new Date()-5,batch: '1111111').save(failOnError: true,flush: true)
 
         //Combos
         account = Account.findByTitle('Spending')
@@ -241,6 +255,7 @@ class BootStrap {
                 date: comboDate,
                 comboGroup: group,
                 amount: new BigDecimal('60')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('80'),account:account,description:'blah blah',date: new Date()-15,batch: '1111111').save(failOnError: true,flush: true)
 
         comboDate = new Date()-6
         group = new TransactionComboGroup(total:new BigDecimal("111.00") , type:'combo',date: comboDate,account: account, location: 'Walmart').save(flush: true,failOnError: true)
@@ -263,6 +278,7 @@ class BootStrap {
                 date: comboDate,
                 comboGroup: group,
                 amount: new BigDecimal('14.99')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('133.20'),account:account,description:'blah blah',date: new Date()-5,batch: '1111111').save(failOnError: true,flush: true)
 
         //Account Transfer
         account = Account.findByTitle('Spending')
@@ -284,6 +300,8 @@ class BootStrap {
                 date: comboDate,
                 comboGroup: group,
                 amount: new BigDecimal('50')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('50'),account:account,description:'blah blah',date: new Date()-13,batch: '1111111').save(failOnError: true,flush: true)
+        new BankRecord(amount:new BigDecimal('50'),account:account1,description:'blah blah',date: new Date()-13,batch: '1111111').save(failOnError: true,flush: true)
 
         comboDate = new Date()-3
         group=new TransactionComboGroup(date:comboDate,account:account1,location:"transfer",total: new BigDecimal("131.50"),type:'transfer').save(flush: true, failOnError: true)
@@ -300,6 +318,7 @@ class BootStrap {
                 date: comboDate,
                 comboGroup: group,
                 amount: new BigDecimal('131.50')).save(flush: true,failOnError: true)
+        new BankRecord(amount:new BigDecimal('131.50'),account:account1,description:'blah blah',date: new Date()-13,batch: '1111111').save(failOnError: true,flush: true)
 
     }
 

@@ -1,9 +1,7 @@
-package tracking
+package org.macsuite.financial.tracking
 
 import grails.plugin.springsecurity.annotation.Secured
 import org.macsuite.financial.exception.AppException
-import org.macsuite.financial.tracking.Transaction
-import org.macsuite.financial.tracking.TransactionService
 import org.macsuite.financial.transaction.command.TransactionCommand
 
 @Secured(['ROLE_FINANCIAL_USER'])

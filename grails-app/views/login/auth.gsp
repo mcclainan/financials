@@ -56,7 +56,7 @@
                     <input type='password' class='form-control' name='j_password' id='password'/>
                 </g:if>
                 <g:else>
-                    <input type='password' class='form-control' name='j_password' id='password' value="password"/>
+                    <input type='password' class='form-control' name='j_password' id='password' value="FinancialKingdom"/>
                 </g:else>
             </div>
             <label class="checkbox">

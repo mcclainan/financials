@@ -277,6 +277,17 @@
                         <li><g:link class="" controller="plannedTransaction"><g:message code="changeMe" default="Budget"/></g:link></li>
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <span><g:message code="changeMe" default="Banking"/></span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><g:link class="" controller="bankRecord"><g:message code="changeMe" default="Bank Records"/></g:link></li>
+                    </ul>
+                </li>
+
+
                 <sec:ifAnyGranted roles="ROLE_ADMIN">
                     <li class="sub-menu">
                         <a href="javascript:;" class="">
@@ -284,7 +295,7 @@
                             <span class="menu-arrow arrow_carrot-right"></span>
                         </a>
                         <ul class="sub">
-                            <li><g:link class="" uri="/admin">Admin Home</g:link></li>
+                            <li><g:link class="" uri="/org.macsuite.financial.admin">Admin Home</g:link></li>
                             <li><g:link class="" controller="adminMainCategory"><g:message code="mainCategory"/> Home</g:link></li>
                             <li><g:link class="" controller="adminCategory"><g:message code="category"/> Home</g:link></li>
                             <li><g:link class="" controller="adminImportFormat"><g:message code="importFormat"/> Home</g:link></li>

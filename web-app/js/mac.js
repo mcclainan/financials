@@ -42,3 +42,7 @@ function toggleCustomFrequencyDisplay(){
 function setView(viewId){
     window.location.replace(viewId)
 }
+
+function populateBankRecordUploadModal(){
+
+}

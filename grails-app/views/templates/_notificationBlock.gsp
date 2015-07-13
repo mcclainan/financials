@@ -14,3 +14,17 @@
         ${notif.content}
     </div>
 </g:if>
+<g:if test="${flash.errors}">
+    <div class="alert alert-danger fade in" >
+        <button data-dismiss="alert" class="close close-sm" type="button">
+            <i class="icon-remove"></i>
+        </button>
+        <ul>
+            <g:each in="${flash.errors}" var="content">
+                <li>
+                    ${content}
+                </li>
+            </g:each>
+        </ul>
+    </div>
+</g:if>

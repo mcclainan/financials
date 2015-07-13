@@ -152,3 +152,4 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 ]
 
 grails.sitemesh.default.layout = 'global.gsp'
+grails.plugins.remotepagination.enableBootstrap=true

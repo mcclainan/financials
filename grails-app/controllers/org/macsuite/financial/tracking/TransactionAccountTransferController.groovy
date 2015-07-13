@@ -1,10 +1,6 @@
-package tracking
+package org.macsuite.financial.tracking
 
 import grails.plugin.springsecurity.annotation.Secured
-import org.macsuite.financial.tracking.Transaction
-import org.macsuite.financial.tracking.TransactionAccountTransferService
-import org.macsuite.financial.tracking.TransactionComboGroup
-import org.macsuite.financial.tracking.TransactionComboService
 import org.macsuite.financial.transaction.command.TransactionAccountTransferCommand
 
 import java.text.DecimalFormat

@@ -1,7 +1,6 @@
-package tracking
+package org.macsuite.financial.tracking
 
 import grails.plugin.springsecurity.annotation.Secured
-import org.macsuite.financial.tracking.Transaction
 
 @Secured(['ROLE_FINANCIAL_USER'])
 class TransactionHomeController {

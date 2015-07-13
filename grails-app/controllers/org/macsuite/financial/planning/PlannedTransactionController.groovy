@@ -1,10 +1,9 @@
-package planning
+package org.macsuite.financial.planning
 
 import grails.plugin.springsecurity.annotation.Secured
 import org.macsuite.financial.MacDateService
 import org.macsuite.financial.beans.StartAndEndDate
 import org.macsuite.financial.category.Category
-import org.macsuite.financial.planning.*
 
 @Secured('ROLE_FINANCIAL_PLANNER')
 class PlannedTransactionController {

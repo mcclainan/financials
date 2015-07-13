@@ -18,13 +18,8 @@ hibernate {
 environments {
     development {
         dataSource {
-            pooled = true
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost:3306/financial_dev"
-            driverClassName = "com.mysql.jdbc.Driver"
-            dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-            username = "root"
-            password = "applicationdatabase"
+            dbCreate = "create-drop"
+            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
         }
         dataSource_auth {
             pooled = true
@@ -36,6 +31,27 @@ environments {
             password = "applicationdatabase"
         }
     }
+//    development {
+//        dataSource {
+//            pooled = true
+//            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+//            url = "jdbc:mysql://localhost:3306/financial_dev"
+//            driverClassName = "com.mysql.jdbc.Driver"
+//            dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+//            username = "root"
+//            password = "applicationdatabase"
+//        }
+//        dataSource_auth {
+//            pooled = true
+//            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+//            url = "jdbc:mysql://localhost:3306/usermanagement_dev"
+//            driverClassName = "com.mysql.jdbc.Driver"
+//            dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+//            username = "root"
+//            password = "applicationdatabase"
+//        }
+//    }
+
     test {
         dataSource {
             dbCreate = "update"

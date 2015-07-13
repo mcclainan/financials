@@ -7,7 +7,7 @@ class BankRecord implements Serializable{
     Date       dateCreated
     String     description
     BigDecimal amount
-    Integer    batch
+    String    batch
 
     static belongsTo = [account:Account]
 
@@ -23,6 +23,18 @@ class BankRecord implements Serializable{
     }
 
     static mapping = {
-        sort([batch: 'desc', date: 'desc'])
+        sort([date: 'desc'])
+    }
+
+    static namedQueries = {
+        lastUpload{
+            projections {
+                max('dateCreated')
+            }
+        }
+    }
+
+    String toString(){
+        "Batch:${batch}, date:${date}, amount:${amount}, description:${description}"
     }
 }

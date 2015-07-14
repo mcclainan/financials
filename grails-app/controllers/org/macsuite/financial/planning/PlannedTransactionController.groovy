@@ -53,28 +53,36 @@ class PlannedTransactionController {
 
     def edit(){
         PlannedTransaction pt = PlannedTransaction.get(params.id)
-        render template: "templates/edit", model: [command:pt]
+        render template: "templates/edit", model: [command:pt, calendar:params.calendar?.toBoolean()]
     }
 
     def update(PlannedTransactionCommand command){
-        println "Ping"
         if(command.hasErrors()){
             render template: "templates/edit", model: [command:command]
             return
         }
 
         command.bind(PlannedTransaction.get(command.id)).save(flush: true)
-        render template: "templates/status", model: [status:'success', statusMessage:message(code: "plannedTransactionCont.update.success.message")]
+        if(command.calendar){
+            redirect action: 'showCalendarDay', params: [year:command.date.getAt(Calendar.YEAR),month:command.date.getAt(Calendar.MONTH),day:command.date.getAt(Calendar.DAY_OF_MONTH)]
+        }else{
+            render template: "templates/status", model: [status:'success', statusMessage:message(code: "plannedTransactionCont.update.success.message")]
+        }
     }
 
     def delete(){
         PlannedTransaction pt = PlannedTransaction.get(params.id)
+        Date date = pt.date
         pt.delete(flush: true)
         flash.notif = [
                 status: 'info',
                 content: message(code: 'myDefault.deleted.message', args:'Planned Transaction')
         ]
-        redirect action:'index'
+        if(params.calendar){
+            redirect controller: 'home', action: 'index'
+        }else{
+            redirect action:'index'
+        }
     }
 
     def multiDelete(){
@@ -93,5 +101,25 @@ class PlannedTransactionController {
                 content: result
         ]
         redirect action: 'index'
+    }
+
+    def showCalendarDay(){
+        Integer year = params.year.toInteger()
+        Integer month = params.month.toInteger()
+        Integer day = params.day.toInteger()
+        Calendar calendar=new GregorianCalendar(year,month,day)
+        params.max=10
+        render template: 'templates/calendarDay',model:[plannedTransactionList:PlannedTransaction.findAllByDate(calendar.time.clearTime(),params),
+                                                        plannedTransactionCount:PlannedTransaction.countByDate(calendar.time.clearTime())]
+    }
+
+    def updateToCalendar(PlannedTransactionCommand command){
+        if(command.hasErrors()){
+            render template: "templates/edit", model: [command:command]
+            return
+        }
+
+        command.bind(PlannedTransaction.get(command.id)).save(flush: true)
+        render template: "templates/status", model: [status:'success', statusMessage:message(code: "plannedTransactionCont.update.success.message")]
     }
 }

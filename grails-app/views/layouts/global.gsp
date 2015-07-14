@@ -23,7 +23,7 @@
     <link href="${resource(dir: 'css',file: 'font-awesome.min.css')}" rel="stylesheet" />
     <!-- full calendar css-->
     <link href="${resource(dir: 'assets/fullcalendar/fullcalendar',file: 'bootstrap-fullcalendar.css')}" rel="stylesheet" />
-    <link href="${resource(dir: 'assets/fullcalendar/fullcalendar',file: 'fullcalendar.css')}fullcalendar.css" rel="stylesheet" />
+    <link href="${resource(dir: 'assets/fullcalendar/fullcalendar',file: 'fullcalendar.css')}" rel="stylesheet" />
     <!-- easy pie chart-->
     <link href="${resource(dir: 'assets/jquery-easy-pie-chart',file: 'jquery.easy-pie-chart.css')}" rel="stylesheet" type="text/css" media="screen"/>
     <!-- owl carousel -->

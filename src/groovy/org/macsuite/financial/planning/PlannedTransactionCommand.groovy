@@ -13,11 +13,13 @@ class PlannedTransactionCommand {
     BigDecimal amount
     Boolean    rolling = false
     Category   category
+    Boolean calendar //A value that tells the system where the request came from
 
     static constraints = {
         date blank:false
         amount blank:false
         rolling blank:false
+        calendar nullable: true
     }
 
     PlannedTransaction bind(PlannedTransaction pt){

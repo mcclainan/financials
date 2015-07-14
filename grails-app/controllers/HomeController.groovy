@@ -3,6 +3,7 @@
 import grails.plugin.springsecurity.annotation.Secured
 import org.macsuite.financial.CashFlowCalendarService
 import org.macsuite.financial.beans.CashFlowCalendarBean
+import org.macsuite.financial.planning.PlannedTransaction
 import org.macsuite.financial.reporting.StaticBudgetService
 import org.macsuite.financial.tracking.Transaction
 
@@ -25,7 +26,7 @@ class HomeController {
         Calendar calendar = new GregorianCalendar(year,month,1)
         if(params.switch=='prev'){
             calendar.add(Calendar.MONTH,-1)
-        }else{
+        }else if(params.switch=='next'){
             calendar.add(Calendar.MONTH,1)
         }
 
@@ -35,4 +36,8 @@ class HomeController {
 
         render template: 'templates/calendar', model: [beanList:beanList,calendarDate:date]
     }
+
+
+
+
 }

@@ -26,9 +26,13 @@
                 </ol>
             </div>
         </div>
-        <div class="row">
-            <g:render template="templates/calendar"/>
-            <g:render template="templates/missedList"/>
+        <div class="row" id="remote-row">
+            <div class="col-lg-8" id="cal">
+                <g:render template="templates/calendar"/>
+            </div>
+            <div class="col-lg-4" id="remote-panel">
+                <g:render template="templates/missedList"/>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
@@ -98,6 +102,11 @@
                                         </td>
                                     </tr>
                                 </g:each>
+                            <g:if test="${!(budgetCompareList?.size()>0)}">
+                                <tr>
+                                    <td colspan="4">No Cumulative Expenses to display.</td>
+                                </tr>
+                            </g:if>
                             </tbody>
                         </table>
                     </div>

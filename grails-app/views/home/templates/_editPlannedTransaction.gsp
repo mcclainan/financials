@@ -1,12 +1,12 @@
 <%@ page import="org.macsuite.financial.category.Category" %>
-<div class="col-lg-${calendar?'12':'4'}">
+<div class="col-lg-4">
     <section class="panel">
         <header class="panel-heading">
             <h2><g:message code="plannedTransactionView.edit.panel.heading" args="${command}"/> </h2>
         </header>
         <div class="panel-body">
             <g:render template="/templates/messageBlock"/>
-            <g:formRemote name="edit" url="[action:'update']" on404="alert('not found!')" class="form-horizontal" update="${calendar?'remote-panel':'remote-panel-2'}">
+            <g:formRemote name="edit" url="[action:'update']" on404="alert('not found!')" class="form-horizontal" update="remote-panel">
                 <div class="form-group ${fieldError([bean: command, field:'date'],'has-error')}">
                     <label class="col-sm-2 control-label" for="date"><g:message code="transaction.date.label"/><span class="required">*</span> </label>
                     <div class="col-sm-10">
@@ -37,7 +37,6 @@
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                         <g:hiddenField name="id" value="${command?.id}"/>
-                        <g:hiddenField name="calendar" value="${calendar}"/>
                         <g:submitButton name="Update" class="btn btn-primary"/>
                         <a class="btn btn-danger" data-toggle="modal" href="#deleteModal">
                             <g:message code="default.button.delete.label"/>
@@ -59,10 +58,7 @@
                         </div>
                         <div class="modal-footer">
                             <button data-dismiss="modal" class="btn btn-default" type="button"><g:message code="default.cancel.label"/></button>
-                            <g:if test="${!calendar}">
-                                <g:remoteLink data-dismiss="modal" action="multiDelete" update="remote-panel-2" class="btn btn-info" id="${command?.category?.id}" params="['month':command?.date?.getAt(Calendar.MONTH),'year':command?.date?.getAt(Calendar.YEAR)]">Multi Delete</g:remoteLink>
-                            </g:if>
-                            <g:link action="delete" id="${command?.id}" class="btn btn-danger" params="[calendar:calendar]"><g:message code="default.confirm.label"/></g:link>
+                            <g:remoteLink update="remote-panel" action="deletePlannedTransaction" id="${command?.id}" class="btn btn-danger"><g:message code="default.confirm.label"/></g:remoteLink>
                         </div>
                     </div>
                 </div>

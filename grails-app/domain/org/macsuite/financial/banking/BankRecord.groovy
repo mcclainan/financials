@@ -32,6 +32,15 @@ class BankRecord implements Serializable{
                 max('dateCreated')
             }
         }
+
+        recon{Date startDate,Date endDate,Long accountId->
+            between('date',startDate,endDate)
+            isEmpty('transactions')
+            account{
+                eq('id',accountId)
+            }
+            order('date')
+        }
     }
 
     String toString(){

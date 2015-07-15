@@ -255,10 +255,10 @@ class BootStrap {
                 date: comboDate,
                 comboGroup: group,
                 amount: new BigDecimal('60')).save(flush: true,failOnError: true)
-        new BankRecord(amount:new BigDecimal('80'),account:account,description:'blah blah',date: new Date()-15,batch: '1111111').save(failOnError: true,flush: true)
+        new BankRecord(amount:new BigDecimal('80'),account:account,description:'blah blah',date: comboDate,batch: '1111111').save(failOnError: true,flush: true)
 
         comboDate = new Date()-6
-        group = new TransactionComboGroup(total:new BigDecimal("111.00") , type:'combo',date: comboDate,account: account, location: 'Walmart').save(flush: true,failOnError: true)
+        group = new TransactionComboGroup(total:new BigDecimal("133.20") , type:'combo',date: comboDate,account: account, location: 'Walmart').save(flush: true,failOnError: true)
         new Transaction(category:Category.findByName('Groceries') ,
                 account: account,
                 location: 'Walmart',
@@ -278,7 +278,7 @@ class BootStrap {
                 date: comboDate,
                 comboGroup: group,
                 amount: new BigDecimal('14.99')).save(flush: true,failOnError: true)
-        new BankRecord(amount:new BigDecimal('133.20'),account:account,description:'blah blah',date: new Date()-5,batch: '1111111').save(failOnError: true,flush: true)
+        new BankRecord(amount:new BigDecimal('133.20'),account:account,description:'blah blah',date: comboDate,batch: '1111111').save(failOnError: true,flush: true)
 
         //Account Transfer
         account = Account.findByTitle('Spending')
@@ -301,7 +301,7 @@ class BootStrap {
                 comboGroup: group,
                 amount: new BigDecimal('50')).save(flush: true,failOnError: true)
         new BankRecord(amount:new BigDecimal('50'),account:account,description:'blah blah',date: new Date()-13,batch: '1111111').save(failOnError: true,flush: true)
-        new BankRecord(amount:new BigDecimal('50'),account:account1,description:'blah blah',date: new Date()-13,batch: '1111111').save(failOnError: true,flush: true)
+        new BankRecord(amount:new BigDecimal('50'),account:account1,description:'blah blah',date: new Date()-13,batch: '22222222').save(failOnError: true,flush: true)
 
         comboDate = new Date()-3
         group=new TransactionComboGroup(date:comboDate,account:account1,location:"transfer",total: new BigDecimal("131.50"),type:'transfer').save(flush: true, failOnError: true)

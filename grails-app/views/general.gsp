@@ -222,7 +222,7 @@
                         <g:select from="[1,2,3]" name="name" title="" data-placement="top" data-toggle="tooltip" class="btn btn-default tooltips" type="button" data-original-title="Tooltip on top">Tooltip on top</g:select>
                         <button title="" data-placement="left" data-toggle="tooltip" class="btn btn-default tooltips" type="button" data-original-title="Tooltip on left"> left</button>
                         <button title="Tooltip on bottom" data-placement="bottom" data-toggle="tooltip " class="btn btn-default tooltips" type="button"> bottom</button>
-                        <button title="Tooltip on right" data-placement="right" data-toggle="tooltip" class="btn btn-default tooltips" type="button"> right</button>
+                        <g:link controller="home" name="button" title="Tooltip on right" data-placement="right" data-toggle="tooltip" class="btn btn-default tooltips" type="button"> right</g:link>
                     </div>
                 </section>
                 <!--tooltips start-->

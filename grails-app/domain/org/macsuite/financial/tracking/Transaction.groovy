@@ -3,6 +3,7 @@ package org.macsuite.financial.tracking
 import org.macsuite.financial.banking.Account
 import org.macsuite.financial.banking.BankRecord
 import org.macsuite.financial.category.Category
+import org.macsuite.financial.category.SpecialCategoryLabel
 
 class Transaction implements Serializable{
     Date       date
@@ -72,6 +73,67 @@ class Transaction implements Serializable{
         paychecks{
             comboGroup{
                 eq('type','paycheck')
+            }
+        }
+
+        recon { Date startDate, Date endDate, Long accountId, List<Long> excluded ->
+            not{'in'('id',excluded)}
+            between('date',startDate,endDate)
+            or{
+                comboGroup{
+                    ne('type','combo')
+                }
+
+                category{
+                    eq('id',SpecialCategoryLabel.findByLabel('transferIn').category.id)
+                }
+            }
+            isNull('bankRecord')
+            account{
+                eq('id',accountId)
+            }
+        }
+
+        reconForRecord { Date date,BigDecimal amount, Long accountId, List<Long> excluded ->
+            not{'in'('id',excluded)}
+            between('date',date-3,date+3)
+            BigDecimal giveAmount = amount.multiply(new BigDecimal('0.10'))
+            between('amount',amount.subtract(giveAmount),amount.add(giveAmount))
+            or{
+                comboGroup{
+                    ne('type','combo')
+                }
+
+                category{
+                    eq('id',SpecialCategoryLabel.findByLabel('transferIn').category.id)
+                }
+            }
+            isNull('bankRecord')
+
+            account{
+                eq('id',accountId)
+            }
+        }
+
+        todayIncome{
+            eq('date',new Date().clearTime())
+            category{
+                eq('type','I')
+                eq('cash',true)
+            }
+            projections {
+                sum('amount')
+            }
+        }
+
+        todayExpense{
+            eq('date',new Date().clearTime())
+            category{
+                eq('type','E')
+                eq('cash',true)
+            }
+            projections {
+                sum('amount')
             }
         }
     }

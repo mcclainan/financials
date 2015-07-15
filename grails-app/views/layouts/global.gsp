@@ -44,7 +44,7 @@
     <![endif]-->
     <link href="${resource(dir: 'css',file: 'macstyle.css')}" rel="stylesheet"/>
     <g:javascript library="jquery"/>
-    <g:javascript src="mac.js"/>
+
     <g:layoutHead/>
 </head>
 
@@ -284,6 +284,8 @@
                     </a>
                     <ul class="sub">
                         <li><g:link class="" controller="bankRecord"><g:message code="changeMe" default="Bank Records"/></g:link></li>
+                        <li><g:link class="" controller="reconciliation"><g:message code="changeMe" default="Reconciliation"/></g:link></li>
+
                     </ul>
                 </li>
 
@@ -349,6 +351,8 @@
 <script src="${resource(dir: 'js', file:'sparklines.js')}"></script>
 <script src="${resource(dir: 'js', file:'charts.js')}"></script>
 <script src="${resource(dir: 'js', file:'jquery.slimscroll.min.js')}"></script>
+<g:javascript src="mac.js"/>
+<g:javascript src="macjQuery.js"/>
 <script>
 
     //knob

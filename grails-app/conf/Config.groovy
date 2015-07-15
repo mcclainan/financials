@@ -143,6 +143,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/index.gsp':                     ['permitAll'],
         '/assets/**':                     ['permitAll'],
         '/**/js/**':                      ['permitAll'],
+        '/js/**':                         ['permitAll'],
         '/**/css/**':                     ['permitAll'],
         '/**/images/**':                  ['permitAll'],
         '/**/fonts/**':                   ['permitAll'],

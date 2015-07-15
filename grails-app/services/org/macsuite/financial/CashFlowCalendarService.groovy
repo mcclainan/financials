@@ -4,6 +4,7 @@ import grails.transaction.Transactional
 import org.macsuite.financial.banking.Account
 import org.macsuite.financial.beans.CashFlowCalendarBean
 import org.macsuite.financial.planning.PlannedTransaction
+import org.macsuite.financial.tracking.Transaction
 
 @Transactional
 class CashFlowCalendarService {
@@ -44,6 +45,14 @@ class CashFlowCalendarService {
         List<CashFlowCalendarBean> cashFlowCalendarBeanList = []
         Calendar calendar = new GregorianCalendar(startDate.getAt(Calendar.YEAR),startDate.getAt(Calendar.MONTH),startDate.getAt(Calendar.DAY_OF_MONTH))
         BigDecimal total = Account.cashTotal.get()
+        BigDecimal todayIncome = Transaction.todayIncome.get()
+        if(todayIncome){
+            total = total.subtract(todayIncome)
+        }
+        BigDecimal todayExpense = Transaction.todayExpense.get()
+        if(todayExpense){
+            total = total.add(todayExpense)
+        }
         if(startDate!=date){
             BigDecimal amount = new BigDecimal(PlannedTransaction.transactionTotal('I',true,date-1,startDate-1).get().toString())
             total = total.add(amount)

@@ -2,6 +2,7 @@ package org.macsuite.financial.transaction.command
 
 import grails.validation.Validateable
 import org.macsuite.financial.banking.Account
+import org.macsuite.financial.banking.BankRecord
 import org.macsuite.financial.category.Category
 import org.macsuite.financial.tracking.Transaction
 import org.macsuite.financial.tracking.TransactionComboGroup
@@ -20,6 +21,7 @@ class TransactionCommand {
     Category   category
     Account    account
     Boolean    temporary
+    BankRecord bankRecord
     TransactionComboGroup comboGroup
 
     static constraints={
@@ -33,6 +35,7 @@ class TransactionCommand {
         comboGroup nullable: true
         cashBack nullable: true
         temporary nullable: true
+        bankRecord nullable: true
     }
 
     TransactionCommand (){}
@@ -47,6 +50,7 @@ class TransactionCommand {
         account=transaction.account
         temporary=transaction.temporary
         comboGroup=transaction.comboGroup
+        bankRecord=transaction.bankRecord
     }
 
     TransactionCommand(TransactionComboGroup comboGroup,TransactionComboCommand command){
@@ -68,6 +72,7 @@ class TransactionCommand {
         transaction.account=account
         transaction.comboGroup=comboGroup
         transaction.temporary=temporary?:false
+        transaction.bankRecord=bankRecord
         return transaction
     }
 }

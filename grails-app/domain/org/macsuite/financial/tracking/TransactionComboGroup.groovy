@@ -8,6 +8,7 @@ class TransactionComboGroup implements Serializable{
     String location
     Account account
     BigDecimal total
+    Boolean validated = false
 
     static hasMany = [transactions:Transaction]
     static constraints = {
@@ -16,6 +17,30 @@ class TransactionComboGroup implements Serializable{
 
     static mapping = {
         transactions cascade: "all-delete-orphan"
+    }
+
+    static namedQueries = {
+        recon { Date startDate, Date endDate, Long accountId, List<Long> excluded ->
+            not{'in'('id',excluded)}
+            eq('type','combo')
+            between('date',startDate,endDate)
+            ne('validated',true)
+            account{
+                eq('id',accountId)
+            }
+        }
+
+        reconForRecord { Date date,BigDecimal amount, Long accountId, List<Long> excluded ->
+            not{'in'('id',excluded)}
+            eq('type','combo')
+            between('date',date-3,date+3)
+            BigDecimal giveAmount = amount.multiply(new BigDecimal('0.10'))
+            between('total',amount.subtract(giveAmount),amount.add(giveAmount))
+            ne('validated',true)
+            account{
+                eq('id',accountId)
+            }
+        }
     }
 
 }

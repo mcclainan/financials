@@ -1,4 +1,4 @@
-package com.macsuite.financial
+package org.macsuite.financial
 
 import org.macsuite.financial.reporting.StaticBudgetService
 

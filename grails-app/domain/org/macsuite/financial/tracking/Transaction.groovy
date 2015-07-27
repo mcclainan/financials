@@ -41,6 +41,7 @@ class Transaction implements Serializable{
 
     static mapping = {
         sort date: 'desc'
+        date column: 'transaction_date'
     }
     static namedQueries = {
         singleTransactions{

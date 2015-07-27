@@ -6,6 +6,7 @@ class PlannedTransaction implements Serializable{
     Date       date
     BigDecimal amount
     Boolean    rolling = false
+    Boolean    rolled = false
 
     static belongsTo = [category:Category]
 
@@ -14,6 +15,7 @@ class PlannedTransaction implements Serializable{
         date blank:false
         amount blank:false
         rolling blank:false
+        rolled nullable: true
     }
 
     static budget(Integer year, Integer month,String type){

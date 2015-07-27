@@ -58,21 +58,21 @@
             <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
         </div>
 
-        <!--logo start-->
+    <!--logo start-->
         <g:link uri="/" class="logo">Mac <span class="lite">Financial</span></g:link>
-        <!--logo end-->
+    <!--logo end-->
 
-        %{--<div class="nav search-row" id="top_menu">--}%
-            %{--<!--  search form start -->--}%
-            %{--<ul class="nav top-menu">--}%
-                %{--<li>--}%
-                    %{--<form class="navbar-form">--}%
-                        %{--<input class="form-control" placeholder="Search" type="text">--}%
-                    %{--</form>--}%
-                %{--</li>--}%
-            %{--</ul>--}%
-            %{--<!--  search form end -->--}%
-        %{--</div>--}%
+    %{--<div class="nav search-row" id="top_menu">--}%
+    %{--<!--  search form start -->--}%
+    %{--<ul class="nav top-menu">--}%
+    %{--<li>--}%
+    %{--<form class="navbar-form">--}%
+    %{--<input class="form-control" placeholder="Search" type="text">--}%
+    %{--</form>--}%
+    %{--</li>--}%
+    %{--</ul>--}%
+    %{--<!--  search form end -->--}%
+    %{--</div>--}%
 
         <div class="top-nav notification-row">
             <!-- notificatoin dropdown start-->
@@ -91,7 +91,7 @@
                                     <div class="task-info">
                                         <div class="desc">${account}: <g:formatNumber number="${account.balance}" type="currency" currencyCode="USD"/></div>
                                     </div>
-                                    
+
                                 </a>
                             </li>
                         </g:each>
@@ -125,45 +125,45 @@
                         </sec:ifAnyGranted>
                     </ul>
                 </li>
-            <li id="task_notificatoin_bar" class="dropdown">
-                <g:link data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <g:message code="global.benefits.account.total"/>: <g:formatNumber number="${Account.benefitsTotal.get()?:0 }" type="currency" currencyCode="USD"/>
-                </g:link>
-                <ul class="dropdown-menu extended tasks-bar">
-                    <div class="notify-arrow notify-arrow-blue"></div>
-                    <g:each in="${Account.benefitsAccounts.list()}" var="account">
-                        <li>
-                            <a href="#">
-                                <div class="task-info">
-                                    <div class="desc">${account}: <g:formatNumber number="${account.balance}" type="currency" currencyCode="USD"/></div>
-                                </div>
+                <li id="task_notificatoin_bar" class="dropdown">
+                    <g:link data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <g:message code="global.benefits.account.total"/>: <g:formatNumber number="${Account.benefitsTotal.get()?:0 }" type="currency" currencyCode="USD"/>
+                    </g:link>
+                    <ul class="dropdown-menu extended tasks-bar">
+                        <div class="notify-arrow notify-arrow-blue"></div>
+                        <g:each in="${Account.benefitsAccounts.list()}" var="account">
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <div class="desc">${account}: <g:formatNumber number="${account.balance}" type="currency" currencyCode="USD"/></div>
+                                    </div>
 
-                            </a>
-                        </li>
-                    </g:each>
-                    <sec:ifAnyGranted roles="ROLE_ADMIN">
-                        <li class="external">
-                            <g:link controller="adminAccount">See All Accounts</g:link>
-                        </li>
-                    </sec:ifAnyGranted>
-                </ul>
-            </li>
+                                </a>
+                            </li>
+                        </g:each>
+                        <sec:ifAnyGranted roles="ROLE_ADMIN">
+                            <li class="external">
+                                <g:link controller="adminAccount">See All Accounts</g:link>
+                            </li>
+                        </sec:ifAnyGranted>
+                    </ul>
+                </li>
 
 
                 <li id="task_notificatoin_bar" class="dropdown">
                     <sec:ifLoggedIn>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             %{--<span class="profile-ava">--}%
-                                %{--<img alt="" src="${resource(dir: 'img', file: 'avatar1_small.png')}">--}%
+                            %{--<img alt="" src="${resource(dir: 'img', file: 'avatar1_small.png')}">--}%
                             %{--</span>--}%
                             <span class="username"><sec:username/></span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
-                                <li class="border-top">
-                                    <g:link controller="logout"><i class="icon_key_alt"></i>Logout</g:link>
-                                </li>
+                            <li class="border-top">
+                                <g:link controller="logout"><i class="icon_key_alt"></i>Logout</g:link>
+                            </li>
                         </ul>
                     </sec:ifLoggedIn>
                     <sec:ifNotLoggedIn>
@@ -188,71 +188,71 @@
                         <span>Dashboard</span>
                     </g:link>
                 </li>
-            <g:if env="development">
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_document_alt"></i>
-                        <span>Forms</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><g:link uri="/form_component">Form Elements</g:link></li>
-                        <li><g:link class="" uri="/form_validation">Form Validation</g:link></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_desktop"></i>
-                        <span>UI Fitures</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><g:link class="" uri="/general">Elements</g:link></li>
-                        <li><g:link class="" uri="/buttons">Buttons</g:link></li>
-                        <li><g:link class="" uri="/grids">Grids</g:link></li>
-                    </ul>
-                </li>
-                <li>
-                    <g:link class="" uri="/widgets">
-                        <i class="icon_genius"></i>
-                        <span>Widgets</span>
-                    </g:link>
-                </li>
-                <li>
-                    <g:link class="" uri="/chart">
-                        <i class="icon_piechart"></i>
-                        <span>Charts</span>
-                    </g:link>
+                <g:if env="development">
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_document_alt"></i>
+                            <span>Forms</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><g:link uri="/form_component">Form Elements</g:link></li>
+                            <li><g:link class="" uri="/form_validation">Form Validation</g:link></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_desktop"></i>
+                            <span>UI Fitures</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><g:link class="" uri="/general">Elements</g:link></li>
+                            <li><g:link class="" uri="/buttons">Buttons</g:link></li>
+                            <li><g:link class="" uri="/grids">Grids</g:link></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <g:link class="" uri="/widgets">
+                            <i class="icon_genius"></i>
+                            <span>Widgets</span>
+                        </g:link>
+                    </li>
+                    <li>
+                        <g:link class="" uri="/chart">
+                            <i class="icon_piechart"></i>
+                            <span>Charts</span>
+                        </g:link>
 
-                </li>
+                    </li>
 
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_table"></i>
-                        <span>Tables</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><g:link class="" uri="/basic_table">Basic Table</g:link></li>
-                    </ul>
-                </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_table"></i>
+                            <span>Tables</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><g:link class="" uri="/basic_table">Basic Table</g:link></li>
+                        </ul>
+                    </li>
 
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_documents_alt"></i>
-                        <span>Pages</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><g:link class="" uri="/profile">Profile</g:link></li>
-                        <li><g:link class="" uri="/login"><span>Login Page</span></g:link></li>
-                        <li><g:link class="" uri="/blank">Blank Page</g:link></li>
-                        <li><g:link class="" uri="/404">404 Error</g:link></li>
-                        <li><g:link class="" uri="/calendar">Calendar</g:link></li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_documents_alt"></i>
+                            <span>Pages</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><g:link class="" uri="/profile">Profile</g:link></li>
+                            <li><g:link class="" uri="/login"><span>Login Page</span></g:link></li>
+                            <li><g:link class="" uri="/blank">Blank Page</g:link></li>
+                            <li><g:link class="" uri="/404">404 Error</g:link></li>
+                            <li><g:link class="" uri="/calendar">Calendar</g:link></li>
 
-                    </ul>
-                </li>
-            </g:if>
+                        </ul>
+                    </li>
+                </g:if>
 
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
@@ -351,6 +351,7 @@
 <script src="${resource(dir: 'js', file:'sparklines.js')}"></script>
 <script src="${resource(dir: 'js', file:'charts.js')}"></script>
 <script src="${resource(dir: 'js', file:'jquery.slimscroll.min.js')}"></script>
+
 <g:javascript src="mac.js"/>
 <g:javascript src="macjQuery.js"/>
 <script>

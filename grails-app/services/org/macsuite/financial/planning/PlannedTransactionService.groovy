@@ -5,8 +5,9 @@ import grails.transaction.Transactional
 import java.text.DecimalFormat
 
 @Transactional
-class CreatePlannedTransactionService {
+class PlannedTransactionService {
     private DecimalFormat formatter = new DecimalFormat("\$#,###.00")
+
     def create(CreatePlannedTransactionCommand command) {
         if(command.mode == CreatePlannedTransactionCommand.SINGLE){
             new PlannedTransaction(category: command.category,date: command.startDate, amount: command.amount,rolling: command.category.required).save(flush: true)
@@ -44,8 +45,6 @@ class CreatePlannedTransactionService {
         }
         return "Successfully deleted ${cnt} planned transactions for ${command.category} totaling ${formatter.format(amount.doubleValue())}"
     }
-
-
 
     private List<Date> getDateList(CreatePlannedTransactionCommand command){
         Date startDate = command.startDate
@@ -114,6 +113,24 @@ class CreatePlannedTransactionService {
             amount = amount.divide(dividerBD,2,BigDecimal.ROUND_HALF_UP)
         }
         return amount
+    }
+
+    def roll(){
+        Date date = new Date()+1
+        Date rollDate = new Date()
+        def list = PlannedTransaction.withCriteria {
+            lt('date',date.clearTime())
+            eq('rolling',true)
+        }
+        if(list?.size()>0){
+            list.each{pt->
+                if(pt.date<rollDate.clearTime()){
+                    pt.date=new Date().clearTime()
+                }
+                pt.rolled=true
+                pt.save(flush: true)
+            }
+        }
     }
 
 }

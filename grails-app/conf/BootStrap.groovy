@@ -1,5 +1,6 @@
 import grails.util.Environment
 import org.macsuite.financial.banking.BankRecord
+import org.macsuite.financial.planning.PlannedTransactionService
 import org.macsuite.financial.user.UserRole
 import org.macsuite.financial.banking.Account
 import org.macsuite.financial.banking.AccountType
@@ -19,6 +20,7 @@ class BootStrap {
 
     Role role
     User user
+    PlannedTransactionService plannedTransactionService
 
     def init = { servletContext ->
         switch (Environment.current){
@@ -392,5 +394,14 @@ class BootStrap {
             calendar = new GregorianCalendar(year,month,15)
             new PlannedTransaction(category:category,date:calendar.getTime(),amount: new BigDecimal('1500')).save(flush: true, failOnError: true)
         }
+
+        category = Category.findByName('Tuition')
+        Date date = new Date()-1
+        new PlannedTransaction(category:category,date:date,amount: new BigDecimal('1145.31'), rolling: true).save(flush: true, failOnError: true)
+        category = Category.findByName('Books')
+        new PlannedTransaction(category:category,date:date,amount: new BigDecimal('184.47'),rolling: true).save(flush: true, failOnError: true)
+        category = Category.findByName('Supplies')
+        new PlannedTransaction(category:category,date:date,amount: new BigDecimal('11.45'),rolling: true).save(flush: true, failOnError: true)
+        plannedTransactionService.roll()
     }
 }

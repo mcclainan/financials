@@ -8,7 +8,7 @@ import org.macsuite.financial.category.Category
 @Secured('ROLE_FINANCIAL_PLANNER')
 class PlannedTransactionController {
     MacDateService macDateService
-    CreatePlannedTransactionService createPlannedTransactionService
+    PlannedTransactionService plannedTransactionService
     def index() {
         Date date = new Date()
         Integer year = params.year?.toInteger()?:date.getAt(Calendar.YEAR)
@@ -34,7 +34,7 @@ class PlannedTransactionController {
             render template: "templates/create", model: [command:command]
             return
         }
-        String result = createPlannedTransactionService.create(command)
+        String result = plannedTransactionService.create(command)
 
         render template: 'templates/status', model: [status:'success',statusMessage:result]
     }
@@ -95,7 +95,7 @@ class PlannedTransactionController {
     }
 
     def executeMultiDelete(DeletePlannedTransactionCommand command){
-        String result=createPlannedTransactionService.deleteMultiplePlannedTransactions(command)
+        String result=plannedTransactionService.deleteMultiplePlannedTransactions(command)
         flash.notif = [
                 status: 'info',
                 content: result
@@ -108,7 +108,6 @@ class PlannedTransactionController {
         Integer month = params.month.toInteger()
         Integer day = params.day.toInteger()
         Calendar calendar=new GregorianCalendar(year,month,day)
-        params.max=10
         render template: 'templates/calendarDay',model:[plannedTransactionList:PlannedTransaction.findAllByDate(calendar.time.clearTime(),params),
                                                         plannedTransactionCount:PlannedTransaction.countByDate(calendar.time.clearTime())]
     }

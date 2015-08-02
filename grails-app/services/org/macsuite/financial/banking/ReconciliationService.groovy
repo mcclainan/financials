@@ -19,10 +19,10 @@ class ReconciliationService {
     List<ReconBean> fetchReconItems(Integer year, Integer month, Account account, List<Long> excludedTransaction, List<Long> excludedCombos) {
         List<ReconBean> reconBeans = []
         StartAndEndDate startAndEndDate = macDateService.getStartAndEnd(month,year)
-        Transaction.recon(startAndEndDate.startDate,startAndEndDate.endDate,account.id,excludedTransaction).list().each{trans->
+        Transaction.recon(startAndEndDate.startDate,startAndEndDate.endDate,account,excludedTransaction).list().each{trans->
             reconBeans<<new ReconBean(date: trans.date,id: trans.id,amount: trans.amount, account:trans.account, type: ReconBean.TRANSACTION,location: trans.location)
         }
-        TransactionComboGroup.recon(startAndEndDate.startDate,startAndEndDate.endDate,account.id,excludedCombos).list().each{ group ->
+        TransactionComboGroup.recon(startAndEndDate.startDate,startAndEndDate.endDate,account,excludedCombos).list().each{ group ->
             reconBeans<<new ReconBean(date: group.date,id: group.id,amount: group.total, account:group.account, type: ReconBean.COMBO,location: group.location)
         }
         return reconBeans.sort{it.date}
@@ -33,7 +33,7 @@ class ReconciliationService {
         Transaction.reconForRecord(bankRecord.date,bankRecord.amount,bankRecord.account.id,excludedTransaction).list().each{trans->
             reconBeans<<new ReconBean(date: trans.date,id: trans.id,amount: trans.amount, account:trans.account, type: ReconBean.TRANSACTION, location:trans.location)
         }
-        TransactionComboGroup.reconForRecord(bankRecord.date,bankRecord.amount,bankRecord.account.id,excludedCombos).list().each{ group ->
+        TransactionComboGroup.reconForRecord(bankRecord.date,bankRecord.amount,bankRecord.account,excludedCombos).list().each{ group ->
             reconBeans<<new ReconBean(date: group.date,id: group.id,amount: group.total, account:group.account, type: ReconBean.COMBO,location: group.location)
         }
 

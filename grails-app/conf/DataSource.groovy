@@ -64,7 +64,7 @@ environments {
             dbCreate = "validate"
             url = "jdbc:mysql://appdb.chggzbpqqzdo.us-west-2.rds.amazonaws.com:3306/financial"
             driverClassName = "com.mysql.jdbc.Driver"
-            dialect = org.hibernate.dialect.MySQLDialect
+            dialect = org.hibernate.dialect.MySQL5InnoDBDialect
             username = "tony"
             password = "Application>database"
             properties {

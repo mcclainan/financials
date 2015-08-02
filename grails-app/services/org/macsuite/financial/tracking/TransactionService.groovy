@@ -28,12 +28,22 @@ class TransactionService implements Serializable {
         Account account = transaction.account
         Category category = transaction.category
         TransactionComboGroup comboGroup = transaction.comboGroup
-        BigDecimal difference = command.amount.abs().subtract(transaction.amount.abs())
 
         if(category.type=='I'){
-            account.balance = account.balance.add(difference).setScale(2,BigDecimal.ROUND_HALF_DOWN)
+            account.balance = account.balance.subtract(transaction.amount)
         }else{
-            account.balance = account.balance.subtract(difference).setScale(2,BigDecimal.ROUND_HALF_DOWN)
+            account.balance = account.balance.add(transaction.amount)
+        }
+
+        if(transaction.account.id != command.account.id){
+            account.save(flush: true)
+            account = command.account
+        }
+
+        if(command.category.type=='I'){
+            account.balance = account.balance.add(command.amount)
+        }else{
+            account.balance = account.balance.subtract(command.amount)
         }
 
         if(comboGroup){

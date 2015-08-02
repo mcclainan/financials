@@ -73,6 +73,7 @@
                                 <th><g:message code="category"/></th>
                                 <th><g:message code="transaction.date.label"/></th>
                                 <th><g:message code="transaction.amount.label"/></th>
+                                <th><g:message code="account"/></th>
                                 <th><g:message code="transaction.location.label"/></th>
                             </tr>
                             </thead>
@@ -83,6 +84,7 @@
                                     <td><g:link action="edit" id="${transaction.id}">${transaction.category}</g:link> </td>
                                     <td><g:formatDate date="${transaction.date}" format="MM/dd"/></td>
                                     <td><g:formatNumber number="${transaction.amount}" type="currency" currencyCode="USD"/></td>
+                                    <td>${transaction.account}</td>
                                     <td>${transaction.location}</td>
                                 </tr>
                             </g:each>

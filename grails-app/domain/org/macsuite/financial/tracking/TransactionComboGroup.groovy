@@ -20,26 +20,22 @@ class TransactionComboGroup implements Serializable{
     }
 
     static namedQueries = {
-        recon { Date startDate, Date endDate, Long accountId, List<Long> excluded ->
-            not{'in'('id',excluded)}
+        recon { Date startDate, Date endDate, Account account, List<Long> excluded ->
+//            not{'in'('id',excluded)}
             eq('type','combo')
             between('date',startDate,endDate)
             ne('validated',true)
-            account{
-                eq('id',accountId)
-            }
+            eq('account',account)
         }
 
-        reconForRecord { Date date,BigDecimal amount, Long accountId, List<Long> excluded ->
-            not{'in'('id',excluded)}
+        reconForRecord { Date date,BigDecimal amount, Account account, List<Long> excluded ->
+//            not{'in'('id',excluded)}
             eq('type','combo')
             between('date',date-3,date+3)
             BigDecimal giveAmount = amount.multiply(new BigDecimal('0.10'))
             between('total',amount.subtract(giveAmount),amount.add(giveAmount))
             ne('validated',true)
-            account{
-                eq('id',accountId)
-            }
+            eq('account',account)
         }
     }
 

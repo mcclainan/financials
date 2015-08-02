@@ -54,9 +54,9 @@ class CashFlowCalendarService {
             total = total.add(todayExpense)
         }
         if(startDate!=date){
-            BigDecimal amount = new BigDecimal(PlannedTransaction.transactionTotal('I',true,date-1,startDate-1).get().toString())
+            BigDecimal amount = new BigDecimal((PlannedTransaction.transactionTotal('I',true,date-1,startDate-1).get()?:0).toString())
             total = total.add(amount)
-            amount = new BigDecimal(PlannedTransaction.transactionTotal('E',true,date-1,startDate-1).get().toString())
+            amount = new BigDecimal((PlannedTransaction.transactionTotal('E',true,date-1,startDate-1).get()?:0).toString())
             total = total.minus(amount)
         }
         if(income.size()>0 || expense.size()>0){

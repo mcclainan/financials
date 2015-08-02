@@ -88,7 +88,7 @@
                     <header class="panel-heading">
                         <g:message code="transactionAccountTransfer.index.table.list.heading"/>
                     </header>
-                    <div class="panel-body">
+                    <div class="panel-body table-responsive">
                         <table class="table table-bordered">
                             <thead>
                             <tr>
@@ -96,6 +96,7 @@
                                 <th><g:message code="category"/></th>
                                 <th><g:message code="transaction.date.label"/></th>
                                 <th><g:message code="transaction.amount.label"/></th>
+                                <th><g:message code="account"/></th>
                                 <th><g:message code="transaction.location.label"/></th>
                                 <th>Delete</th>
                             </tr>
@@ -107,6 +108,7 @@
                                     <td>${transaction.category}</td>
                                     <td><g:formatDate date="${transaction.date}" format="MM/dd"/></td>
                                     <td><g:formatNumber number="${transaction.amount}" type="currency" currencyCode="USD"/></td>
+                                    <td>${transaction.account}</td>
                                     <td>${transaction.location}</td>
                                     <td style="text-align: center;">
                                         <span class="label-danger">
@@ -116,6 +118,17 @@
                                 </tr>
                             </g:each>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="7">
+                                        <div class="text-center">
+                                            <ul class="pagination pagination-lg">
+                                                <g:paginate total="${transactionCount}" prev="${raw("<")}" next="${raw(">")}" maxsteps="5"/>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </section>

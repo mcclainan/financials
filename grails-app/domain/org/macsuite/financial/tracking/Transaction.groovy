@@ -41,7 +41,7 @@ class Transaction implements Serializable{
 
     static mapping = {
         sort date: 'desc'
-        date column: 'transaction_date'
+//        date column: 'transaction_date'
     }
     static namedQueries = {
         singleTransactions{
@@ -77,8 +77,8 @@ class Transaction implements Serializable{
             }
         }
 
-        recon { Date startDate, Date endDate, Long accountId, List<Long> excluded ->
-            not{'in'('id',excluded)}
+        recon { Date startDate, Date endDate, Account account, List<Long> excluded ->
+//            not{'in'('id',excluded)}
             between('date',startDate,endDate)
             or{
                 comboGroup{
@@ -90,9 +90,7 @@ class Transaction implements Serializable{
                 }
             }
             isNull('bankRecord')
-            account{
-                eq('id',accountId)
-            }
+            eq('account',account)
         }
 
         reconForRecord { Date date,BigDecimal amount, Long accountId, List<Long> excluded ->

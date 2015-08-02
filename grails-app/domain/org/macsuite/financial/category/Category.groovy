@@ -13,6 +13,10 @@ class Category{
     Boolean cumulative = false
     Boolean required = false
 
+    static final String INCOME = 'I'
+    static final String EXPENSE = 'E'
+    static final List<String> TYPES = [INCOME,EXPENSE]
+
     static belongsTo = [mainCategory:MainCategory]
 
     static hasMany = [transactions:Transaction, plannedTransactions:PlannedTransaction]
@@ -22,7 +26,7 @@ class Category{
         description nullable: true, blank: true
         active blank:false
         displayOnMobile blank:false
-        type(nullable: false, blank: false, size:1..1, inList:["I", "E"])
+        type(nullable: false, blank: false, size:1..1, inList:TYPES)
         cumulative nullable:true, blank:true
         cash(nullable: false, blank: false)
     }

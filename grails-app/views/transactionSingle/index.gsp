@@ -83,7 +83,7 @@
                                     <td colspan="5">
                                         <div class="text-center">
                                             <ul class="pagination pagination-lg">
-                                                <g:paginate total="${transactionCount}" prev="${raw("<")}" next="${raw(">")}" maxsteps="10"/>
+                                                <g:paginate total="${transactionCount}" prev="${raw("<")}" next="${raw(">")}" maxsteps="5"/>
                                             </ul>
                                         </div>
                                     </td>

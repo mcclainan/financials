@@ -10,9 +10,10 @@ class StaticBudgetController {
             println 'hello'
             staticBudgetService.setStaticBudget()
         }
-        StringBuffer sb = new StringBuffer()
-        def list = BudgetItem.budgetSet(2015,7,'I').list()
-        def otherList = BudgetItem.budgetSet(2015,7,'E').list()
+        StringBuffer sb = new StringBuffer();
+
+        def list = BudgetItem.budgetSet(2016,2,'I').list()
+        def otherList = BudgetItem.budgetSet(2016,2,'E').list()
         [list:list,otherList:otherList,cumlist:staticBudgetService.createCompareObjects(2015,6)]
     }
 }

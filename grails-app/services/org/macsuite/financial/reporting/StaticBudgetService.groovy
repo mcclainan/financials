@@ -28,7 +28,7 @@ class StaticBudgetService {
         StartAndEndDate startAndEndDate = macDateService.getStartAndEnd(month,year)
         BudgetItem.cumulativeBudgetSet(year,month+1).list().each { budgetItem->
             BigDecimal amount = Transaction.withCriteria {
-                between('date',startAndEndDate.startDate,startAndEndDate.endDate)
+                between('date',startAndEndDate.startDate,startAndEndDate.endDate+1)
                 eq('category',budgetItem.category)
                 projections {
                     sum('amount')

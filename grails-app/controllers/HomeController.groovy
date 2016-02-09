@@ -8,7 +8,7 @@ import org.macsuite.financial.planning.PlannedTransactionService
 import org.macsuite.financial.reporting.StaticBudgetService
 import org.macsuite.financial.tracking.Transaction
 
-@Secured(['IS_AUTHENTICATED_FULLY'])
+@Secured(['permitAll'])
 class HomeController {
     CashFlowCalendarService cashFlowCalendarService
     StaticBudgetService staticBudgetService

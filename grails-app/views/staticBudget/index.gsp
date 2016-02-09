@@ -19,22 +19,54 @@
                 <h3 class="page-header"><i class="fa fa fa-changeMe"></i><g:message code="" default="Change Me"/></h3>
                 <ol class="breadcrumb">
                     <li><i class="fa fa-home"></i><g:link uri="/">Home</g:link></li>
-                    <li><i class="fa fa-bars"></i>Change Me</li>
+                    <li><i class="fa fa-bars"></i>Static Budget and Comparison</li>
                 </ol>
             </div>
         </div>
-        <g:each in="${list}">
-            ${it}<br/>
-        </g:each>
-        <br/><br/><br/>
-        <g:each in="${otherList}">
-            ${it}<br/>
-        </g:each>
-        <br/><br/><br/>
+
         <g:each in="${cumlist}">
             ${it}<br/>
         </g:each>
+        <div class="row">
+            <g:render template="/templates/notificationBlock"/>
+            <div class="col-lg-4">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <h2>Income</h2>
+                    </header>
+                    <div class="panel-body">
+                        <table class="table table-condensed">
+                            <g:each in="${list}" var="b">
+                                <tr>
+                                    <td>
+                                        ${b.category}
+                                    </td>
+                                    <td>${b.amount}</td>
+                                </tr>
+                            </g:each>
+                        </table>
+                    </div>
+                    <header class="panel-heading">
+                        <h2>Expenses</h2>
+                    </header>
+                    <div class="panel-body">
+                        <table class="table table-condensed">
+                            <g:each in="${otherList}" var="b">
+                                <tr>
+                                    <td>
+                                        ${b.category}
+                                    </td>
+                                    <td>${b.amount}</td>
+                                </tr>
+                            </g:each>
+                        </table>
+                    </div>
+                </section>
+            </div>
 
+            </div>
+
+        </div>
     </section>
 </section>
 <!--main content end-->

@@ -45,14 +45,17 @@ class CashFlowCalendarService {
         List<CashFlowCalendarBean> cashFlowCalendarBeanList = []
         Calendar calendar = new GregorianCalendar(startDate.getAt(Calendar.YEAR),startDate.getAt(Calendar.MONTH),startDate.getAt(Calendar.DAY_OF_MONTH))
         BigDecimal total = Account.cashTotal.get()
-        BigDecimal todayIncome = Transaction.todayIncome.get()
-        if(todayIncome){
-            total = total.subtract(todayIncome)
-        }
-        BigDecimal todayExpense = Transaction.todayExpense.get()
-        if(todayExpense){
-            total = total.add(todayExpense)
-        }
+//        println "Todays starting total is ${total}"
+//        BigDecimal todayIncome = Transaction.todayIncome.get()
+//        if(todayIncome){
+//            total = total.subtract(todayIncome)
+//        }
+//        println "Plus Todays income of ${todayIncome?:0} is ${total}"
+//        BigDecimal todayExpense = Transaction.todayExpense.get()
+//        if(todayExpense){
+//            total = total.minus(todayExpense)
+//        }
+//        println "minus today expense of ${todayExpense?:0} is ${total}"
         if(startDate!=date){
             BigDecimal amount = new BigDecimal((PlannedTransaction.transactionTotal('I',true,date-1,startDate-1).get()?:0).toString())
             total = total.add(amount)

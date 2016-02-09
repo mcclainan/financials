@@ -125,7 +125,7 @@ grails.plugin.springsecurity.authority.className = 'org.macsuite.financial.user.
 grails.plugin.springsecurity.logout.postOnly=false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/':                              ['permitAll'],
-        '/home':                              ['permitAll'],
+        '/home':                          ['permitAll'],
         '/index':                         ['permitAll'],
         '/basic_table':                   ['permitAll'],
         '/indexexample':                  ['permitAll'],
